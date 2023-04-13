@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import HomeScreenComponent from './HomeScreen';
 import { createClient, AnalyticsProvider } from '@segment/analytics-react-native';
 import ReactMoE from "react-native-moengage";
-
+import {MoEngagePlugin} from "react-native-segment-plugin-moengage";
 
 function App(): JSX.Element {
 
@@ -13,7 +13,7 @@ function App(): JSX.Element {
     writeKey: SEGMENT_WRITE_KEY,
   });
 
-  // segmentClient.add({ plugin: new MoEngagePlugin() });
+  segmentClient.add({ plugin: new MoEngagePlugin() });
 
   useEffect(() => {
     // MoEngage ReactNative SDK Initialisation

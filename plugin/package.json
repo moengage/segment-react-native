@@ -19,6 +19,9 @@
     "email": "mobiledevs@moengage.com"
   },
   "license": "ISC",
+  "peerDependencies": {
+    "@segment/analytics-react-native": "*"
+  },
   "devDependencies": {
     "@types/react-native": "^0.69.3"
   }

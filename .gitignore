@@ -50,3 +50,6 @@ buck-out/
 
 # Typescript
 tsconfig.tsbuildinfo
+
+# Key
+key.tsx
