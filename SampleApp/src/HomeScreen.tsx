@@ -63,7 +63,7 @@ export default function HomeScreenComponent(props : {client: SegmentClient}): JS
       fontSize: 16,
       fontWeight: "500",
       color: "white",
-      verticalAlign: "middle",
+      paddingTop: 20,
       paddingStart: 20
     },
     item: {
