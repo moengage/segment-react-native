@@ -4,40 +4,50 @@ import {
     IdentifyEventType,
     PluginType,
     SegmentAPISettings,
-    SegmentError,
     TrackEventType,
-    UpdateType,
+    UpdateType
 } from '@segment/analytics-react-native';
+import MoEngagePluginHelper from './utils/MoEngagePluginHelper';
 
 export class MoEngagePlugin extends DestinationPlugin {
 
+    tag = "MoEngagePlugin";
     type = PluginType.destination;
     key = 'MoEngage';
   
-    update(settings: SegmentAPISettings, type: UpdateType): void {
-        console.log("Segment MoEngage Update Called");
-    }
+    moEngagePluginHelper = new MoEngagePluginHelper();
 
-    alias(event: AliasEventType): AliasEventType | Promise<AliasEventType | undefined> | undefined {
-        console.log("Segment MoEngage Alias Called");
-        return event
+    update(settings: SegmentAPISettings, type: UpdateType): void {
+        try {
+            if (type == UpdateType.initial && settings.integrations?.[this.key] !== undefined) {
+                let moEngageIntegrationSettings = settings.integrations[this.key];
+                this.moEngagePluginHelper.trackAnonymousId(moEngageIntegrationSettings, this.analytics?.userInfo.get().anonymousId);
+            }
+        } catch(error) {
+        }
     }
 
     identify(event: IdentifyEventType): IdentifyEventType | Promise<IdentifyEventType | undefined> | undefined {
-        console.log("Segment MoEngage Identify Called");
-        return event
+        this.moEngagePluginHelper.setUserAttributes(event.traits);
+        return event;
     }
 
     track(event: TrackEventType): TrackEventType | Promise<TrackEventType | undefined> | undefined {
-        console.log("Segment MoEngage Track Called");
-        return event
+        this.moEngagePluginHelper.trackEvent(event.event, event.properties);
+        return event;
     }
 
+    alias(event: AliasEventType): AliasEventType | Promise<AliasEventType | undefined> | undefined {
+        this.moEngagePluginHelper.setUserAlias(event.userId);
+        return event;
+    }
+
+     // todo: check if this is needed because it can make double API call to server
     flush(): void | Promise<void> {
-        console.log("Segment MoEngage Flush Called");
+       this.moEngagePluginHelper.syncDataImmediately();
     }
 
     reset(): void {
-        console.log("Segment MoEngage Reset Called");
+        this.moEngagePluginHelper.logoutUser();
     }
 }

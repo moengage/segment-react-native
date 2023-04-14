@@ -14,6 +14,7 @@ import com.moengage.core.config.FcmConfig
 import com.moengage.core.config.LogConfig
 import com.moengage.core.config.NotificationConfig
 import com.moengage.react.MoEInitializer
+import com.segment.moengage.react.MoESegmentPackage
 
 class MainApplication : Application(), ReactApplication {
 
@@ -25,7 +26,9 @@ class MainApplication : Application(), ReactApplication {
         }
 
         override fun getPackages(): List<ReactPackage> {
-            return PackageList(this).packages
+            val packages: MutableList<ReactPackage> = PackageList(this).packages
+            packages.add(MoESegmentPackage())
+            return packages
         }
 
         override fun getJSMainModuleName(): String = "index"

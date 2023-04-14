@@ -167,6 +167,7 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':react-native-segment-plugin-moengage')
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")

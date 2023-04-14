@@ -14,7 +14,8 @@ export function trackEvent(segmentClient: SegmentClient) {
             email: "moengage@test.com",
             phone: 1234567890,
             gender: "male"
-        }
+        },
+        2: "item" 
     });
 }
 
