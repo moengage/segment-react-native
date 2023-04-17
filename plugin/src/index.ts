@@ -1,2 +1,2 @@
 export * from './MoEngagePlugin';
-export * from './Logger';
+export * from './internal/Logger';

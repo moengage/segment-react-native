@@ -10,7 +10,7 @@ import {
 } from '@segment/analytics-react-native';
 import MoEngagePluginHelper from './internal/MoEngagePluginHelper';
 import { traitsMap, transformMap } from './internal/ParametersMapping';
-import { MoEngageLogger as Logger } from './Logger';
+import { MoEngageLogger as Logger } from './internal/Logger';
 
 const mappedTraits = generateMapTransform(traitsMap, transformMap);
 

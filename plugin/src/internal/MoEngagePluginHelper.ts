@@ -4,7 +4,7 @@ import {
     UserTraits
 } from '@segment/analytics-react-native';
 import PlatformHelper from './PlatformHelper';
-import { MoEngageLogger as Logger } from '../Logger';
+import { MoEngageLogger as Logger } from './Logger';
 
 const MoESegmentBridge = require("react-native").NativeModules.MoESegmentBridge;
 
