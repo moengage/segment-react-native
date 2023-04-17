@@ -4,7 +4,7 @@ const currentIsoDate: string = (new Date()).toISOString();
 
 // Equivalent to trackEvent in MoEngage
 export function trackEvent(segmentClient: SegmentClient) {
-    segmentClient.track('Item Purchased', {
+    segmentClient.track('Mobile Item Purchased', {
         id: 321,
         name: "iPhone",
         purchaseTime: currentIsoDate,

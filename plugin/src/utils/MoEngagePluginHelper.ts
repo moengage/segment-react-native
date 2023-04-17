@@ -17,7 +17,7 @@ export default class MoEngagePluginHelper {
         MoESegmentBridge.trackAnonymousId(PlatformHelper.getAnonymousIdPayload(this.moEngageAppId, anonymousId));
     }
 
-    setUserAttributes(userTraits?: UserTraits) {
+    setUserAttributes(userTraits?: Record<string, unknown>) {
         if (userTraits === undefined) return;
         MoESegmentBridge.setUserAttributes(PlatformHelper.getUserAttributesPayload(this.moEngageAppId, userTraits));
     }
@@ -30,10 +30,6 @@ export default class MoEngagePluginHelper {
     setUserAlias(alias?: string) {
         if (alias === undefined) return;
         MoESegmentBridge.setUserAlias(PlatformHelper.getUserAliasUpdatePayload(this.moEngageAppId, alias));
-    }
-    
-    syncDataImmediately() {
-        MoESegmentBridge.syncDataImmediately(PlatformHelper.getAccountMetaPayload(this.moEngageAppId));
     }
     
     logoutUser() {

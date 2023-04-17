@@ -68,3 +68,5 @@ dependencies {
     compileOnly "com.facebook.react:react-native:+"
     compileOnly "com.moengage:moe-android-sdk:$moengageCoreVersion"
 }
+
+apply from: file("./user-agent.gradle")

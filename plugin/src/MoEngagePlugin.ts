@@ -5,9 +5,13 @@ import {
     PluginType,
     SegmentAPISettings,
     TrackEventType,
-    UpdateType
+    UpdateType,
+    generateMapTransform
 } from '@segment/analytics-react-native';
 import MoEngagePluginHelper from './utils/MoEngagePluginHelper';
+import { traitsMap, transformMap } from './utils/ParametersMapping';
+
+const mappedTraits = generateMapTransform(traitsMap, transformMap);
 
 export class MoEngagePlugin extends DestinationPlugin {
 
@@ -22,13 +26,17 @@ export class MoEngagePlugin extends DestinationPlugin {
             if (type == UpdateType.initial && settings.integrations?.[this.key] !== undefined) {
                 let moEngageIntegrationSettings = settings.integrations[this.key];
                 this.moEngagePluginHelper.trackAnonymousId(moEngageIntegrationSettings, this.analytics?.userInfo.get().anonymousId);
+                this.analytics?.userInfo.onChange((userInfo) => {
+                    this.moEngagePluginHelper.trackAnonymousId(moEngageIntegrationSettings, userInfo.anonymousId);
+                });
             }
         } catch(error) {
         }
     }
 
     identify(event: IdentifyEventType): IdentifyEventType | Promise<IdentifyEventType | undefined> | undefined {
-        this.moEngagePluginHelper.setUserAttributes(event.traits);
+        const traits = mappedTraits(event.traits as Record<string, unknown>);
+        this.moEngagePluginHelper.setUserAttributes(traits);
         return event;
     }
 
@@ -40,11 +48,6 @@ export class MoEngagePlugin extends DestinationPlugin {
     alias(event: AliasEventType): AliasEventType | Promise<AliasEventType | undefined> | undefined {
         this.moEngagePluginHelper.setUserAlias(event.userId);
         return event;
-    }
-
-     // todo: check if this is needed because it can make double API call to server
-    flush(): void | Promise<void> {
-       this.moEngagePluginHelper.syncDataImmediately();
     }
 
     reset(): void {

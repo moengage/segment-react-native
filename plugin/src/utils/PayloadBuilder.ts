@@ -26,6 +26,7 @@ export function getTrackEventPayload(appId: string, event: string, properties: {
             appId: appId
         },
         data: {
+            event: event,
             properties: properties
         }
     }

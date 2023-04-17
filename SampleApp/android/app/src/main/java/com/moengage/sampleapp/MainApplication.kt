@@ -13,6 +13,7 @@ import com.moengage.core.MoEngage
 import com.moengage.core.config.FcmConfig
 import com.moengage.core.config.LogConfig
 import com.moengage.core.config.NotificationConfig
+import com.moengage.core.model.IntegrationPartner
 import com.moengage.react.MoEInitializer
 import com.segment.moengage.react.MoESegmentPackage
 
@@ -60,6 +61,7 @@ class MainApplication : Application(), ReactApplication {
                     R.drawable.large_icon
                 )
             )
+            .enablePartnerIntegration(IntegrationPartner.SEGMENT)
 
         MoEInitializer.initializeDefaultInstance(applicationContext, moEngage)
     }
