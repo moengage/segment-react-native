@@ -9,8 +9,6 @@ import org.json.JSONObject
 
 internal class PayloadTransformer {
 
-    private val tag = "PayloadTransformer"
-
     fun instanceMetaFromJson(jsonObject: JSONObject): InstanceMeta {
         return InstanceMeta(
             jsonObject.getJSONObject(ARGUMENT_ACCOUNT_META).getString(ARGUMENT_APP_ID)

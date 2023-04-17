@@ -9,6 +9,7 @@ import com.moengage.core.MoECoreHelper
 import com.moengage.core.analytics.MoEAnalyticsHelper
 import com.moengage.core.internal.USER_ATTRIBUTE_USER_LOCATION
 import com.moengage.core.internal.integrations.MoEIntegrationHelper
+import com.moengage.core.internal.logger.Logger
 import com.moengage.core.internal.model.IntegrationMeta
 import com.moengage.core.internal.utils.MoEUtils.jsonToMap
 import com.moengage.core.internal.utils.isNullOrBlank
@@ -28,6 +29,8 @@ import org.json.JSONObject
 class MoESegmentBridge(reactContext: ReactApplicationContext) :
     ReactContextBaseJavaModule(reactContext) {
 
+    private val tag = "MoESegmentBridge_${getMoESegmentLibVersion()}"
+
     private val context: Context = reactContext.applicationContext
     private val payloadTransformer = PayloadTransformer()
     private var integrationHelper: MoEIntegrationHelper? = null
@@ -38,8 +41,10 @@ class MoESegmentBridge(reactContext: ReactApplicationContext) :
 
     @ReactMethod
     fun trackAnonymousId(payload: String) {
+        Logger.print { "$tag trackAnonymousId(): will try to track anonymous id $payload" }
         val anonymousIdData = payloadTransformer.anonymousIdDataFromJson(JSONObject(payload))
         if (integrationHelper == null) {
+            Logger.print { "$tag trackAnonymousId(): initialising the integration helper " }
             integrationHelper = MoEIntegrationHelper(context, IntegrationPartner.SEGMENT)
             integrationHelper?.initialize(
                 anonymousIdData.instanceMeta.appId,
@@ -55,6 +60,7 @@ class MoESegmentBridge(reactContext: ReactApplicationContext) :
             )
         }
 
+        Logger.print { "$tag trackAnonymousId(): AnonymousId ${anonymousIdData.anonymousId}" }
         integrationHelper?.trackAnonymousId(
             anonymousIdData.anonymousId,
             anonymousIdData.instanceMeta.appId
@@ -63,9 +69,11 @@ class MoESegmentBridge(reactContext: ReactApplicationContext) :
 
     @ReactMethod
     fun setUserAttributes(payload: String) {
+        Logger.print { "$tag setUserAttributes(): will try to add user attributes $payload " }
         val userAttributeData = payloadTransformer.userAttributeDataFromJson(JSONObject(payload))
 
         if (!userAttributeData.traits.isNullOrBlank()) {
+            Logger.print { "$tag setUserAttributes(): Adding user attributes ${userAttributeData.traits} " }
             integrationHelper?.trackUserAttribute(
                 jsonToMap(userAttributeData.traits),
                 userAttributeData.instanceMeta.appId
@@ -118,6 +126,7 @@ class MoESegmentBridge(reactContext: ReactApplicationContext) :
 
     @ReactMethod
     fun trackEvent(payload: String) {
+        Logger.print { "$tag trackEvent(): will try to track event $payload" }
         val dataPoints = payloadTransformer.dataPointsFromJson(JSONObject(payload))
         integrationHelper?.trackEvent(
             dataPoints.eventName,
@@ -128,12 +137,14 @@ class MoESegmentBridge(reactContext: ReactApplicationContext) :
 
     @ReactMethod
     fun setUserAlias(payload: String) {
+        Logger.print { "$tag setUserAlias(): will try to update user alias $payload" }
         val userAliasData = payloadTransformer.aliasDataFromJson(JSONObject(payload))
         MoEAnalyticsHelper.setAlias(context, userAliasData.alias, userAliasData.instanceMeta.appId)
     }
 
     @ReactMethod
     fun logoutUser(payload: String) {
+        Logger.print { "$tag setUserAlias(): will try to logout user $payload" }
         val instanceMeta = payloadTransformer.instanceMetaFromJson(JSONObject(payload))
         MoECoreHelper.logoutUser(context, instanceMeta.appId)
     }
