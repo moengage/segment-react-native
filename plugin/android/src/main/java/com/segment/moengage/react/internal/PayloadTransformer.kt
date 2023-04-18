@@ -1,5 +1,6 @@
 package com.segment.moengage.react.internal
 
+import com.segment.moengage.react.internal.model.AddressData
 import com.segment.moengage.react.internal.model.AliasData
 import com.segment.moengage.react.internal.model.AnonymousIdData
 import com.segment.moengage.react.internal.model.Datapoint
@@ -42,5 +43,17 @@ internal class PayloadTransformer {
             instanceMetaFromJson(jsonObject),
             jsonObject.getJSONObject(ARGUMENT_DATA).getJSONObject(ARGUMENT_TRAITS)
         )
+    }
+
+    fun getAddressDataFromJson(jsonObject: JSONObject?): AddressData {
+        return if (jsonObject == null) {
+            return AddressData("", "", "")
+        } else {
+            AddressData(
+                jsonObject.optString(USER_TRAIT_ADDRESS_CITY),
+                jsonObject.optString(USER_TRAIT_ADDRESS_STATE),
+                jsonObject.optString(USER_TRAIT_ADDRESS_COUNTRY)
+            )
+        }
     }
 }

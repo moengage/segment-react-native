@@ -80,31 +80,30 @@ class MoESegmentBridge(reactContext: ReactApplicationContext) :
             )
 
             // Address Tracking
-            val address = userAttributeData.traits.optJSONObject(USER_TRAIT_ADDRESS)
-            val city = address?.optString(USER_TRAIT_ADDRESS_CITY)
-            if (!city.isNullOrEmpty()) {
+            val address = payloadTransformer.getAddressDataFromJson(
+                userAttributeData.traits.optJSONObject(USER_TRAIT_ADDRESS)
+            )
+            if (address.city.isNotEmpty()) {
                 MoEAnalyticsHelper.setUserAttribute(
                     context,
                     USER_TRAIT_ADDRESS_CITY,
-                    city,
+                    address.city,
                     userAttributeData.instanceMeta.appId
                 )
             }
-            val country = address?.optString(USER_TRAIT_ADDRESS_COUNTRY)
-            if (!country.isNullOrEmpty()) {
+            if (address.country.isNotEmpty()) {
                 MoEAnalyticsHelper.setUserAttribute(
                     context,
                     USER_TRAIT_ADDRESS_COUNTRY,
-                    country,
+                    address.country,
                     userAttributeData.instanceMeta.appId
                 )
             }
-            val state = address?.optString(USER_TRAIT_ADDRESS_STATE)
-            if (!state.isNullOrEmpty()) {
+            if (address.state.isNotEmpty()) {
                 MoEAnalyticsHelper.setUserAttribute(
                     context,
                     USER_TRAIT_ADDRESS_STATE,
-                    state,
+                    address.state,
                     userAttributeData.instanceMeta.appId
                 )
             }
