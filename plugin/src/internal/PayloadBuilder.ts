@@ -1,4 +1,7 @@
-export function getAnonymousIdPayload(appId: string, anonymousId?: string): { [k: string]: any } { 
+export function getAnonymousIdPayload(
+    appId: string,
+    anonymousId?: string
+): { [k: string]: any } {
     return {
         accountMeta: {
             appId: appId
@@ -9,7 +12,10 @@ export function getAnonymousIdPayload(appId: string, anonymousId?: string): { [k
     }
 }
 
-export function getUserAttributePayload(appId: string, traits: { [k: string]: any }) {
+export function getUserAttributePayload(
+    appId: string,
+    traits: { [k: string]: any }
+) {
     return {
         accountMeta: {
             appId: appId
@@ -20,7 +26,11 @@ export function getUserAttributePayload(appId: string, traits: { [k: string]: an
     }
 }
 
-export function getTrackEventPayload(appId: string, event: string, properties: { [k: string | number]: any }): { [k: string]: any } {
+export function getTrackEventPayload(
+    appId: string,
+    event: string,
+    properties: { [k: string | number]: any }
+): { [k: string]: any } {
     return {
         accountMeta: {
             appId: appId
@@ -32,7 +42,10 @@ export function getTrackEventPayload(appId: string, event: string, properties: {
     }
 }
 
-export function getUserAliasUpdatePayload(appId: string, alias: string): { [k: string]: any } {
+export function getUserAliasUpdatePayload(
+    appId: string,
+    alias: string
+): { [k: string]: any } {
     return {
         accountMeta: {
             appId: appId
@@ -43,7 +56,9 @@ export function getUserAliasUpdatePayload(appId: string, alias: string): { [k: s
     }
 }
 
-export function getAccountMetaPayload(appId: string): { [k: string]: any } {
+export function getAccountMetaPayload(
+    appId: string
+): { [k: string]: any } {
     return {
         accountMeta: {
             appId: appId

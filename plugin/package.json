@@ -12,7 +12,7 @@
     "plugin"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": {
     "name": "MoEngage",
@@ -23,6 +23,9 @@
     "@segment/analytics-react-native": "*"
   },
   "devDependencies": {
-    "@types/react-native": "^0.69.3"
+    "@types/jest": "^29.5.0",
+    "@types/react-native": "^0.69.3",
+    "@tsconfig/react-native": "^2.0.2",
+    "ts-jest": "^29.1.0"
   }
 }

@@ -8,7 +8,7 @@ export namespace MoEngageLogger {
     let logLevel: LogLevel = LogLevel.DEBUG;
     let isEnabled: Boolean = __DEV__;
 
-    export function configureLogs(logLevel: LogLevel, isEnabledForReleaseBuild : Boolean = false) {
+    export function configureLogs(logLevel: LogLevel, isEnabledForReleaseBuild: Boolean = false) {
         logLevel = logLevel;
         isEnabled = isEnabledForReleaseBuild || __DEV__;
     }
