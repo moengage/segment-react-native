@@ -15,6 +15,7 @@ export default class MoEngagePluginHandler {
     tag = "MoEngagePluginHandler";
     moEngageAppId: string
     platformPayloadBuilder: PlatformPayloadBuilder
+    currentAnonymousId: string | undefined
 
     constructor(integrationSettings: MoEngageIntegration) {
         this.moEngageAppId = integrationSettings[APP_ID_KEY as keyof IntegrationSettings];
@@ -25,7 +26,9 @@ export default class MoEngagePluginHandler {
     trackAnonymousId(anonymousId?: string) {
         try {
             Logger.debug(this.tag, `trackAnonymousId(): Id ${anonymousId}`);
+            if (this.currentAnonymousId === anonymousId) return;
             MoESegmentBridge.trackAnonymousId(this.platformPayloadBuilder.getAnonymousIdPayload(anonymousId));
+            this.currentAnonymousId = anonymousId;
         } catch (error) {
             Logger.error(this.tag, `trackAnonymousId(): ${error}`);
         }

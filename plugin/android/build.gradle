@@ -14,6 +14,7 @@ buildscript {
 
 ext {
   moengageCoreVersion = "12.7.01"
+  moengageSegmentPluginBaseVersion = "1.0.0"
   minimumVersion = 21
   targetVersion = 31
   compileVersion = 31
@@ -67,6 +68,7 @@ dependencies {
 
     compileOnly "com.facebook.react:react-native:+"
     compileOnly "com.moengage:moe-android-sdk:$moengageCoreVersion"
+    api "com.moengage:plugin-base-segment:$moengageSegmentPluginBaseVersion"
 
     testImplementation "junit:junit:4.13.2"
     testImplementation "pl.pragmatists:JUnitParams:1.1.1"
