@@ -38,7 +38,7 @@ class MoESegmentBridge(reactContext: ReactApplicationContext) :
     }
 
     /**
-     * Track AnonymousId
+     * Track User Attributes
      *
      * @param payload the payload containing the MoEngage AppId + User Attributes
      * @since 1.0.0
