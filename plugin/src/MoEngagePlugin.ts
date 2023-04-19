@@ -47,7 +47,10 @@ export class MoEngagePlugin extends DestinationPlugin {
     identify(event: IdentifyEventType): IdentifyEventType | Promise<IdentifyEventType | undefined> | undefined {
         try {
             Logger.debug(this.tag, "identify(): will try to add attributes");
-            const traits = mappedTraits(event.traits as Record<string, unknown>);
+            const traits = mappedTraits(
+                this.moEngagePluginHandler
+                    ?.getModifiedUserTraits(event.userId, event.traits) as Record<string, unknown>
+            );
             this.moEngagePluginHandler?.setUserAttributes(traits);
         } catch (error) {
             Logger.error(this.tag, `identify(): error while tracking attributes ${error}`);

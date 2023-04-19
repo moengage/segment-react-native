@@ -5,6 +5,7 @@ import {
 } from '@segment/analytics-react-native';
 import PlatformPayloadBuilder from './PlatformPayloadBuilder';
 import { MoEngageLogger as Logger } from './Logger';
+import { traitsMap } from "./ParametersMapping";
 
 const MoESegmentBridge = require("react-native").NativeModules.MoESegmentBridge;
 
@@ -53,6 +54,21 @@ export default class MoEngagePluginHandler {
         } catch (error) {
             Logger.error(this.tag, `trackAnonymousId(): ${error}`);
         }
+    }
+
+    /**
+     * Modify the user traits with user id added in the traits
+     * 
+     * @param {string} userId - user id for the user
+     * @param {Record<string, unknown>} userTraits - tracked user traits 
+     * @returns modified user traits
+     * @since 1.0.0
+     */
+    getModifiedUserTraits(userId?: string, userTraits?: Record<string, unknown>): Record<string, unknown> | undefined {
+        if (userId === undefined) return userTraits;
+        if (userTraits === undefined) userTraits = {}
+        userTraits[traitsMap.userId] = userId;
+        return userTraits
     }
 
     /**
