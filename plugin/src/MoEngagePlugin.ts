@@ -14,6 +14,12 @@ import { MoEngageLogger as Logger } from './internal/Logger';
 
 const mappedTraits = generateMapTransform(traitsMap, transformMap);
 
+/**
+ * Destination Plugin to integrate MoEngage SDK with Segment SDK
+ * 
+ * @author Abhishek Kumar
+ * @since 1.0.0
+ */
 export class MoEngagePlugin extends DestinationPlugin {
 
     tag = "MoEngagePlugin";
@@ -30,7 +36,6 @@ export class MoEngagePlugin extends DestinationPlugin {
                 this.moEngagePluginHandler = new MoEngagePluginHandler(moEngageIntegrationSettings);
                 this.moEngagePluginHandler?.trackAnonymousId(this.analytics?.userInfo.get().anonymousId);
                 this.analytics?.userInfo.onChange((userInfo) => {
-                    Logger.debug(this.tag, "update(): anonymous id changed for user");
                     this.moEngagePluginHandler?.trackAnonymousId(userInfo.anonymousId);
                 });
             }

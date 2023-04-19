@@ -22,6 +22,12 @@ import {
 } from '../__mocks__/PayloadDataProvider';
 import PlatformPayloadBuilder from "../internal/PlatformPayloadBuilder";
 
+/**
+ * Test Cases For {@link PayloadBuilder}
+ * 
+ * @author Abhishek Kumar
+ * @since 1.0.0
+ */
 describe('PayloadBuilder', () => {
     describe('Anonymous Id Payload', () => {
         it('should return payload with anonymous id', () => {
@@ -58,6 +64,12 @@ describe('PayloadBuilder', () => {
     });
 });
 
+/**
+ * Test Cases For {@link PlatformPayloadBuilder}
+ * 
+ * @author Abhishek Kumar
+ * @since 1.0.0
+ */
 describe('PlatformPayloadBuilder', () => {
     const androidPlatformPayloadBuilder = new PlatformPayloadBuilder("android", dummyAppId);
     const iosPlatformPayloadBuilder = new PlatformPayloadBuilder("ios", dummyAppId);

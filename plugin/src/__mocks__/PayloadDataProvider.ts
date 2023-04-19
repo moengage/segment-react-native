@@ -1,14 +1,35 @@
+/**
+ * @file Provided the Mock data which can be used to test the functions
+ * @author Abhishek Kumar
+ * @since 1.0.0
+ */
+
+/**
+ * MoEngage App Id
+ */
 export const dummyAppId = "DUMMY_APP_ID";
 
+/**
+ * User Anonymous Id
+ */
 export const dummyAnonymousId = "DUMMY_ANONYMOUS_ID";
 
+/**
+ * Date in ISO Format
+ */
 export const dummyIsoDate = (new Date()).toISOString();
 
+/**
+ * User Alias
+ */
 export const dummyUserAlias = "DUMMY_USER_ALIAS";
 
+/**
+ * User Traits JSON
+ */
 export const dummyUserTraits = {
     address: {
-        street: "Koramangala", 
+        street: "Koramangala",
         city: "Bengaluru",
         country: "India",
         state: "Karnataka",
@@ -24,6 +45,9 @@ export const dummyUserTraits = {
     username: "moengage"
 };
 
+/**
+ * Tracked Event JSON 
+ */
 export const dummyTrackedEvent = {
     event: 'Mobile Item Purchased',
     properties: {
@@ -37,16 +61,22 @@ export const dummyTrackedEvent = {
             phone: 1234567890,
             gender: "male"
         },
-        2: "item" 
+        2: "item"
     }
 };
 
+/**
+ * Account Meta Payload
+ */
 export const accountMetaPayload = {
     accountMeta: {
         appId: dummyAppId
     }
 };
 
+/**
+ * AnonymousId Payload using AnonymousId as {@link dummyAnonymousId}
+ */
 export const anonymousIdPayload = {
     accountMeta: {
         appId: dummyAppId
@@ -56,6 +86,9 @@ export const anonymousIdPayload = {
     }
 };
 
+/**
+ * AnonymousId Payload with empty Anonymous Id
+ */
 export const anonymousIdPayloadWithEmptyId = {
     accountMeta: {
         appId: dummyAppId
@@ -65,6 +98,9 @@ export const anonymousIdPayloadWithEmptyId = {
     }
 };
 
+/**
+ * User Attributes payload using traits as {@link dummyUserTraits}
+ */
 export const userAttributePayload = {
     accountMeta: {
         appId: dummyAppId
@@ -74,13 +110,16 @@ export const userAttributePayload = {
     }
 };
 
+/**
+ * Tracked Event payload using event name & propeties from {@link dummyTrackedEvent}
+ */
 export const trackedEventPayload = {
     accountMeta: {
         appId: dummyAppId
     },
     data: {
-       event: "Mobile Item Purchased",
-       properties: {
+        event: "Mobile Item Purchased",
+        properties: {
             id: 321,
             name: "iPhone",
             purchaseTime: dummyIsoDate,
@@ -91,11 +130,14 @@ export const trackedEventPayload = {
                 phone: 1234567890,
                 gender: "male"
             },
-            2: "item" 
+            2: "item"
         }
     }
 };
 
+/**
+ * User Alias payload using alias as {@link dummyUserAlias}
+ */
 export const userAliasPayload = {
     accountMeta: {
         appId: dummyAppId

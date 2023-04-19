@@ -1,3 +1,6 @@
+/**
+ * Segment SDK to MoEngage SDK pre-defined Mapped attributes
+ */
 export const traitsMap: { [key: string]: string } = {
   anonymousId: 'USER_ATTRIBUTE_SEGMENT_ID',
   email: 'USER_ATTRIBUTE_USER_EMAIL',
@@ -10,6 +13,9 @@ export const traitsMap: { [key: string]: string } = {
   birthday: 'USER_ATTRIBUTE_USER_BDAY'
 };
 
+/**
+ * Transform function which transform the current attributes to mapped attributes based on {@link traitsMap}
+ */
 export const transformMap: { [key: string]: (value: unknown) => unknown } = {
   event: (value: unknown) => {
     if (typeof value === 'string') {
