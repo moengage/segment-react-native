@@ -64,11 +64,16 @@ export default class MoEngagePluginHandler {
      * @returns modified user traits
      * @since 1.0.0
      */
-    getModifiedUserTraits(userId?: string, userTraits?: Record<string, unknown>): Record<string, unknown> | undefined {
-        if (userId === undefined) return userTraits;
-        if (userTraits === undefined) userTraits = {}
-        userTraits[traitsMap.userId] = userId;
-        return userTraits
+    getModifiedUserTraits(
+        anonymousId?: string,
+        userId?: string,
+        userTraits?: Record<string, unknown>
+    ): Record<string, unknown> | undefined {
+        let modifiedUserTraits = {}
+        if (userId !== undefined) modifiedUserTraits[traitsMap.userId] = userId;
+        if (anonymousId !== undefined) modifiedUserTraits[traitsMap.anonymousId] = anonymousId;
+        modifiedUserTraits = Object.assign(modifiedUserTraits, userTraits);
+        return modifiedUserTraits;
     }
 
     /**

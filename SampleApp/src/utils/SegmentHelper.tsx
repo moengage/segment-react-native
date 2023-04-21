@@ -29,14 +29,45 @@ export function identifyAttributes(segmentClient: SegmentClient) {
             state: "Karnataka",
             postalCode: "560095",
         },
+        company: {
+            name: "MoEngage",
+            id: "MoE",
+            industry: "Engagement",
+            employee_count: 999,
+            plan: "plan"
+        },
         age: 1,
         birthday: currentIsoDate,
         createdAt: currentIsoDate,
         email: "moengage@test.com",
+        id: "moe",
+        title: "MoE. ",
         firstName: "MoEngage",
         lastName: "Inc. ",
         phone: "1234567890",
-        username: "moengage"
+        username: "moengage",
+        avatar: "https://picsum.photos/200/200",
+        description: "Test Attributes",
+        gender: "male",
+        website: "https://moengage.com/",
+        location: {
+            latitude: 12.9344,
+            longitude: 77.6113
+        },
+        extraStringKey: "Extra Attribute",
+        extraIntKey: 99,
+        extraLongKey: 1738141852226360940,
+        extraDoubleKey: 3.0,
+        extraDateKey: currentIsoDate,
+        extraBoolKey: true,
+        extraNullKey: null,
+        extraUndefinedKey: undefined,
+        extraJsonObjectKey: {
+            key0: "tracking not supported"
+        },
+        extraJsonArrayKey: [{
+            key1: "tracking not supported"
+        }]
     });
 }
 

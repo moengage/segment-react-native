@@ -49,7 +49,7 @@ export class MoEngagePlugin extends DestinationPlugin {
             Logger.debug(this.tag, "identify(): will try to add attributes");
             const traits = mappedTraits(
                 this.moEngagePluginHandler
-                    ?.getModifiedUserTraits(event.userId, event.traits) as Record<string, unknown>
+                    ?.getModifiedUserTraits(event.anonymousId, event.userId, event.traits) as Record<string, unknown>
             );
             this.moEngagePluginHandler?.setUserAttributes(traits);
         } catch (error) {
