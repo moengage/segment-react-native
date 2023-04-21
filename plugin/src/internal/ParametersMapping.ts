@@ -1,5 +1,6 @@
 /**
  * Segment SDK to MoEngage SDK pre-defined Mapped attributes
+ * @since 1.0.0
  */
 export const traitsMap: { [key: string]: string } = {
   anonymousId: 'USER_ATTRIBUTE_SEGMENT_ID',
@@ -14,15 +15,24 @@ export const traitsMap: { [key: string]: string } = {
 };
 
 /**
- * Transform function which transform the current attributes to mapped attributes based on {@link traitsMap}
+ * Transform the JSON Object based on provided KeyMap 
+ * Notes: This is made for flat Object. Nested Object key will not changed.
+ * 
+ * @param keyMap - map from which the key should transfrom 
+ * @param json - Json for which key should transfrom 
+ * @returns Mapped key-value
+ * @since 1.0.0
  */
-export const transformMap: { [key: string]: (value: unknown) => unknown } = {
-  event: (value: unknown) => {
-    if (typeof value === 'string') {
-      if (value in traitsMap) {
-        return traitsMap[value];
-      }
-    }
-    return value;
-  },
+export const transformMap = (
+  keyMap: { [key: string]: string },
+  json: Record<string, unknown>
+): Record<string, unknown> => {
+  const result: Record<string, unknown> = {};
+
+  for (const key in json) {
+    const newKey = keyMap[key] ?? key;
+    result[newKey] = json[key];
+  }
+
+  return result;
 };

@@ -12,8 +12,6 @@ import MoEngagePluginHandler from './internal/MoEngagePluginHandler';
 import { traitsMap, transformMap } from './internal/ParametersMapping';
 import { MoEngageLogger as Logger } from './internal/Logger';
 
-const mappedTraits = generateMapTransform(traitsMap, transformMap);
-
 /**
  * Destination Plugin to integrate MoEngage SDK with Segment SDK
  * 
@@ -47,7 +45,8 @@ export class MoEngagePlugin extends DestinationPlugin {
     identify(event: IdentifyEventType): IdentifyEventType | Promise<IdentifyEventType | undefined> | undefined {
         try {
             Logger.debug(this.tag, "identify(): will try to add attributes");
-            const traits = mappedTraits(
+            const traits = transformMap(
+                traitsMap,
                 this.moEngagePluginHandler
                     ?.getModifiedUserTraits(event.anonymousId, event.userId, event.traits) as Record<string, unknown>
             );
