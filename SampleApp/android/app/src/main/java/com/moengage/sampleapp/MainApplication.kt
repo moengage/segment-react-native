@@ -19,7 +19,7 @@ import com.segment.moengage.react.MoESegmentPackage
 
 class MainApplication : Application(), ReactApplication {
 
-    private val moEngageAppId: String = "DAO6UGZ73D9RTK8B5W96TPYN"
+    private val moEngageAppId: String = "Enter Your AppId"
 
     private val mReactNativeHost: ReactNativeHost = object : DefaultReactNativeHost(this) {
         override fun getUseDeveloperSupport(): Boolean {
