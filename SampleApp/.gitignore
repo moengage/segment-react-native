@@ -64,3 +64,6 @@ yarn-error.log
 
 #Other
 google-services.json
+debug.keystore
+keystore.properties
+moengage123.jks
