@@ -37,6 +37,20 @@ export default class MoEngagePluginHandler {
     }
 
     /**
+     * Initialise the Native Integration SDK
+     *
+     * @since 1.0.0
+     */
+    initialiseSdk(): void {
+        try {
+            Logger.debug(this.tag, `initialiseSdk(): `);
+            MoESegmentBridge.initialiseSdk(this.platformPayloadBuilder.getAccountMetaPayload());
+        } catch (error) {
+            Logger.error(this.tag, `initialiseSdk(): ${error}`);
+        }
+    }
+
+    /**
      * Track AnonymousId for the AppId in IntegrationSetting
      * 
      * @param {string} anonymousId - anonymous id fetched from Segment Plugin

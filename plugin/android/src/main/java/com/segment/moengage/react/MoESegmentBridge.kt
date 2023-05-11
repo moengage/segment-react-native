@@ -18,7 +18,7 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.moengage.core.internal.logger.Logger
-import com.moengage.plugin.base.segment.PluginBaseHandler
+import com.moengage.plugin.base.segment.SegmentPluginHelper
 
 /**
  * Bridge to communicate with Hybrid MoEngage Segment Plugin
@@ -32,11 +32,23 @@ class MoESegmentBridge(reactContext: ReactApplicationContext) :
     private val tag = "MoESegmentBridge_${getMoESegmentLibVersion()}"
 
     private val context: Context = reactContext.applicationContext
-    private val pluginBaseHandler = PluginBaseHandler(context, getMoESegmentLibVersion())
+    private val segmentPluginHelper = SegmentPluginHelper(context, getMoESegmentLibVersion())
 
     override fun getName(): String = "MoESegmentBridge"
 
     private fun getMoESegmentLibVersion(): String = BuildConfig.MOENGAGE_REACT_SEGMENT_VERSION
+
+    /**
+     * Initialise the SDK
+     * 
+     * @param payload the payload containing the MoEngage AppId
+     * @since 1.0.0
+     */
+    @ReactMethod
+    fun initialiseSdk(payload: String) {
+        Logger.print { "$tag initialiseSdk(): will try to initialise sdk $payload" }
+        segmentPluginHelper.initializeIntegrationHelperIfRequired(payload);
+    }
 
     /**
      * Track AnonymousId 
@@ -47,7 +59,7 @@ class MoESegmentBridge(reactContext: ReactApplicationContext) :
     @ReactMethod
     fun trackAnonymousId(payload: String) {
         Logger.print { "$tag trackAnonymousId(): will try to track anonymous id $payload" }
-        pluginBaseHandler.trackAnonymousId(payload)
+        segmentPluginHelper.trackAnonymousId(payload)
     }
 
     /**
@@ -59,7 +71,7 @@ class MoESegmentBridge(reactContext: ReactApplicationContext) :
     @ReactMethod
     fun setUserAttributes(payload: String) {
         Logger.print { "$tag setUserAttributes(): will try to add user attributes $payload " }
-        pluginBaseHandler.addUserAttributes(payload)
+        segmentPluginHelper.addUserAttributes(payload)
     }
 
     /**
@@ -71,7 +83,7 @@ class MoESegmentBridge(reactContext: ReactApplicationContext) :
     @ReactMethod
     fun trackEvent(payload: String) {
         Logger.print { "$tag trackEvent(): will try to track event $payload" }
-        pluginBaseHandler.trackEvent(payload)
+        segmentPluginHelper.trackEvent(payload)
     }
 
     /**
@@ -83,7 +95,7 @@ class MoESegmentBridge(reactContext: ReactApplicationContext) :
     @ReactMethod
     fun setUserAlias(payload: String) {
         Logger.print { "$tag setUserAlias(): will try to update user alias $payload" }
-        pluginBaseHandler.setUserAlias(payload)
+        segmentPluginHelper.setUserAlias(payload)
     }
 
     /**
@@ -95,6 +107,6 @@ class MoESegmentBridge(reactContext: ReactApplicationContext) :
     @ReactMethod
     fun logoutUser(payload: String) {
         Logger.print { "$tag logoutUser(): will try to logout user $payload" }
-        pluginBaseHandler.logoutUser(payload)
+        segmentPluginHelper.logoutUser(payload)
     }
 }

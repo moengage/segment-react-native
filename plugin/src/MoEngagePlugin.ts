@@ -32,6 +32,7 @@ export class MoEngagePlugin extends DestinationPlugin {
             if (type == UpdateType.initial && settings.integrations?.[this.key] !== undefined) {
                 let moEngageIntegrationSettings = settings.integrations[this.key];
                 this.moEngagePluginHandler = new MoEngagePluginHandler(moEngageIntegrationSettings);
+                this.moEngagePluginHandler?.initialiseSdk();
                 this.moEngagePluginHandler?.trackAnonymousId(this.analytics?.userInfo.get().anonymousId);
                 this.analytics?.userInfo.onChange((userInfo) => {
                     this.moEngagePluginHandler?.trackAnonymousId(userInfo.anonymousId);
