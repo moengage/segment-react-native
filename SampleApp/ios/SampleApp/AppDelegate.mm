@@ -1,6 +1,8 @@
 #import "AppDelegate.h"
-
 #import <React/RCTBundleURLProvider.h>
+
+#import <ReactNativeSegmentMoEngage/MoEngageInitializer.h>
+#import <MoEngageSDK/MoEngageSDK.h>
 
 @implementation AppDelegate
 
@@ -11,6 +13,9 @@
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
 
+  MoEngageSDKConfig* sdkConfig = [[MoEngageSDKConfig alloc] initWithAppID:@"YOUR APP ID"];
+  sdkConfig.enableLogs = true;
+  [[MoEngageInitializer sharedInstance] initializeDefaultSDKConfig:sdkConfig andLaunchOptions:launchOptions];
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
