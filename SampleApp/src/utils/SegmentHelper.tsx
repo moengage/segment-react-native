@@ -15,7 +15,7 @@ export function trackEvent(segmentClient: SegmentClient) {
             phone: 1234567890,
             gender: "male"
         },
-        2: "item" 
+        2: "item"
     });
 }
 
@@ -23,7 +23,7 @@ export function trackEvent(segmentClient: SegmentClient) {
 export function identifyAttributes(segmentClient: SegmentClient) {
     segmentClient.identify('moengage-test-user-1', {
         address: {
-            street: "Koramangala", 
+            street: "Koramangala",
             city: "Bengaluru",
             country: "India",
             state: "Karnataka",
@@ -45,7 +45,7 @@ export function identifyAttributes(segmentClient: SegmentClient) {
         firstName: "MoEngage",
         lastName: "Inc. ",
         phone: "1234567890",
-        username: "moengage",
+        name: "moengage",
         avatar: "https://picsum.photos/200/200",
         description: "Test Attributes",
         gender: "male",

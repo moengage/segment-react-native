@@ -20,9 +20,10 @@ const APP_ID_KEY = "apiKey";
 export default class MoEngagePluginHandler {
 
     tag = "MoEngagePluginHandler";
-    moEngageAppId: string
-    platformPayloadBuilder: PlatformPayloadBuilder
-    currentAnonymousId: string | undefined
+    moEngageAppId: string;
+    platformPayloadBuilder: PlatformPayloadBuilder;
+    currentAnonymousId: string | undefined;
+    currentUserId: string | undefined;
 
     /**
      * Create an instance of MoEngagePluginHandler
@@ -73,18 +74,16 @@ export default class MoEngagePluginHandler {
     /**
      * Modify the user traits with user id added in the traits
      * 
-     * @param {string} userId - user id for the user
+     * @param {string} anonymousId - anonymous id for the user
      * @param {Record<string, unknown>} userTraits - tracked user traits 
      * @returns modified user traits
      * @since 1.0.0
      */
     getModifiedUserTraits(
         anonymousId?: string,
-        userId?: string,
         userTraits?: Record<string, unknown>
     ): Record<string, unknown> | undefined {
-        let modifiedUserTraits = {}
-        if (userId !== undefined) modifiedUserTraits[traitsMap.userId] = userId;
+        let modifiedUserTraits: { [k: string]: any } = {};
         if (anonymousId !== undefined) modifiedUserTraits[traitsMap.anonymousId] = anonymousId;
         modifiedUserTraits = Object.assign(modifiedUserTraits, userTraits);
         return modifiedUserTraits;
@@ -93,14 +92,19 @@ export default class MoEngagePluginHandler {
     /**
      * Track user attributes for the AppId in IntegrationSetting
      * 
+     * @param {string} userId - user id for the user
      * @param {Record<string, unknown} userTraits - user attribute to be tracked 
      *     Note: Records should be mapped to MoEngage predefined attributes if available 
      * @since 1.0.0
      */
-    setUserAttributes(userTraits?: Record<string, unknown>): void {
+    setUserAttributes(newUserId?: string, userTraits?: Record<string, unknown>): void {
         try {
             Logger.debug(this.tag, `setUserAttributes(): traits ${userTraits}`);
             if (userTraits === undefined) return;
+            if (newUserId !== this.currentUserId) {
+                this.setUserAlias(newUserId);
+                this.currentUserId = newUserId;
+            }
             MoESegmentBridge.setUserAttributes(this.platformPayloadBuilder.getUserAttributesPayload(userTraits));
         } catch (error) {
             Logger.error(this.tag, `setUserAttributes(): ${error}`);

@@ -49,9 +49,9 @@ export class MoEngagePlugin extends DestinationPlugin {
             const traits = transformMap(
                 traitsMap,
                 this.moEngagePluginHandler
-                    ?.getModifiedUserTraits(event.anonymousId, event.userId, event.traits) as Record<string, unknown>
+                    ?.getModifiedUserTraits(event.anonymousId, event.traits) as Record<string, unknown>
             );
-            this.moEngagePluginHandler?.setUserAttributes(traits);
+            this.moEngagePluginHandler?.setUserAttributes(event.userId, traits);
         } catch (error) {
             Logger.error(this.tag, `identify(): error while tracking attributes ${error}`);
         }
