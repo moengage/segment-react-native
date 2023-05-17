@@ -26,18 +26,18 @@ buildscript {
 }
 
 ext {
-  moengageCoreVersion = "12.7.01"
+  moengageCoreVersion = "12.8.00"
   moengageSegmentPluginBaseVersion = "1.0.0"
   minimumVersion = 21
-  targetVersion = 31
-  compileVersion = 31
+  targetVersion = 33
+  compileVersion = 33
 }
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion compileVersion
+    compileSdk compileVersion
 
     defaultConfig {
         minSdkVersion minimumVersion
