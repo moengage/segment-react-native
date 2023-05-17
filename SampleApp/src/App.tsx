@@ -4,12 +4,12 @@ import { View } from 'react-native';
 import HomeScreenComponent from './HomeScreen';
 import { createClient, AnalyticsProvider } from '@segment/analytics-react-native';
 import ReactMoE from "react-native-moengage";
-import { MoEngagePlugin, MoEngageLogger, LogLevel } from "react-native-segment-plugin-moengage";
+import { MoEngagePlugin, MoEngageLogger, MoEngageLogLevel } from "react-native-segment-plugin-moengage";
 
 function App(): JSX.Element {
 
   // MoEngage React Segment Logger Configuration
-  MoEngageLogger.configureLogs(LogLevel.DEBUG, true);
+  MoEngageLogger.configureLogs(MoEngageLogLevel.DEBUG, true);
 
   // Segment Initialisation
   const segmentClient = createClient({
@@ -26,8 +26,8 @@ function App(): JSX.Element {
 
   return (
     <AnalyticsProvider client={segmentClient}>
-      <View style={{flex: 1}}>
-        <HomeScreenComponent client={segmentClient}/>
+      <View style={{ flex: 1 }}>
+        <HomeScreenComponent client={segmentClient} />
       </View>
     </AnalyticsProvider>
   );

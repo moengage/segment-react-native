@@ -4,7 +4,7 @@
  * @author Abhishek Kumar
  * @since 1.0.0
  */
-export enum LogLevel {
+export enum MoEngageLogLevel {
 
     /**
      * Log Level Debug Log 
@@ -39,7 +39,7 @@ export namespace MoEngageLogger {
     /**
      * Min log level which need to be logged on console
      */
-    let logLevel: LogLevel = LogLevel.DEBUG;
+    let logLevel: MoEngageLogLevel = MoEngageLogLevel.DEBUG;
 
     /**
      * Whether the log is enabled or not
@@ -53,7 +53,7 @@ export namespace MoEngageLogger {
      * @param {LogLevel} logLevel = log level which need to be logged on console
      * @param {boolean} isEnabledForReleaseBuild = whether log is enabled for release build or not
      */
-    export function configureLogs(logLevel: LogLevel, isEnabledForReleaseBuild: boolean = false): void {
+    export function configureLogs(logLevel: MoEngageLogLevel, isEnabledForReleaseBuild: boolean = false): void {
         logLevel = logLevel;
         isEnabled = isEnabledForReleaseBuild || __DEV__;
     }
@@ -65,7 +65,7 @@ export namespace MoEngageLogger {
      * @param {string} message - log message which need to be logged
      */
     export function debug(tag: string, message: string): void {
-        if (!isEnabled || logLevel > LogLevel.DEBUG) return;
+        if (!isEnabled || logLevel > MoEngageLogLevel.DEBUG) return;
         console.log(`${tag} ${message}`);
     }
 
@@ -76,7 +76,7 @@ export namespace MoEngageLogger {
      * @param {string} message - log message which need to be logged
      */
     export function warn(tag: string, message: string): void {
-        if (!isEnabled || logLevel > LogLevel.WARN) return;
+        if (!isEnabled || logLevel > MoEngageLogLevel.WARN) return;
         console.warn(`${tag} ${message}`);
     }
 
@@ -87,7 +87,7 @@ export namespace MoEngageLogger {
      * @param {string} message - log message which need to be logged
      */
     export function error(tag: string, message: string): void {
-        if (!isEnabled || logLevel > LogLevel.ERROR) return;
+        if (!isEnabled || logLevel > MoEngageLogLevel.ERROR) return;
         console.error(`${tag} ${message}`);
     }
 }

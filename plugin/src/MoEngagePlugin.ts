@@ -10,7 +10,7 @@ import {
 } from '@segment/analytics-react-native';
 import MoEngagePluginHandler from './internal/MoEngagePluginHandler';
 import { traitsMap, transformMap } from './internal/ParametersMapping';
-import { MoEngageLogger as Logger } from './internal/Logger';
+import { MoEngageLogger as Logger } from './Logger';
 
 /**
  * Destination Plugin to integrate MoEngage SDK with Segment SDK
@@ -49,9 +49,9 @@ export class MoEngagePlugin extends DestinationPlugin {
             const traits = transformMap(
                 traitsMap,
                 this.moEngagePluginHandler
-                    ?.getModifiedUserTraits(event.anonymousId, event.traits) as Record<string, unknown>
+                    ?.getModifiedUserTraits(event.anonymousId, event.userId, event.traits) as Record<string, unknown>
             );
-            this.moEngagePluginHandler?.setUserAttributes(event.userId, traits);
+            this.moEngagePluginHandler?.setUserAttributes(traits);
         } catch (error) {
             Logger.error(this.tag, `identify(): error while tracking attributes ${error}`);
         }

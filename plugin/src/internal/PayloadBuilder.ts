@@ -15,7 +15,7 @@
  */
 export function getAnonymousIdPayload(
     appId: string,
-    anonymousId?: string
+    anonymousId: string
 ): { [k: string]: any } {
     return {
         accountMeta: {
@@ -54,14 +54,14 @@ export function getUserAttributePayload(
  * 
  * @param  {string} appId - MoEngage AppId
  * @param {string} event - Event Name
- * @param {{[k: string | number]: any}} properties - Event properties
+ * @param {{[k: string]: any}} properties - Event properties
  * @returns the json object for the events to be track
  * @since 1.0.0
  */
 export function getTrackEventPayload(
     appId: string,
     event: string,
-    properties: { [k: string | number]: any }
+    properties: { [k: string]: any }
 ): { [k: string]: any } {
     return {
         accountMeta: {

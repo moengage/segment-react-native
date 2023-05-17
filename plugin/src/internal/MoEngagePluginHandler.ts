@@ -4,7 +4,7 @@ import {
     JsonMap
 } from '@segment/analytics-react-native';
 import PlatformPayloadBuilder from './PlatformPayloadBuilder';
-import { MoEngageLogger as Logger } from './Logger';
+import { MoEngageLogger as Logger } from '../Logger';
 import { traitsMap } from "./ParametersMapping";
 
 const MoESegmentBridge = require("react-native").NativeModules.MoESegmentBridge;
@@ -22,8 +22,6 @@ export default class MoEngagePluginHandler {
     tag = "MoEngagePluginHandler";
     moEngageAppId: string;
     platformPayloadBuilder: PlatformPayloadBuilder;
-    currentAnonymousId: string | undefined;
-    currentUserId: string | undefined;
 
     /**
      * Create an instance of MoEngagePluginHandler
@@ -60,12 +58,8 @@ export default class MoEngagePluginHandler {
     trackAnonymousId(anonymousId?: string): void {
         try {
             Logger.debug(this.tag, `trackAnonymousId(): Id ${anonymousId}`);
-            if (this.currentAnonymousId === anonymousId) {
-                Logger.debug(this.tag, `trackAnonymousId(): Id already tracked`);
-                return;
-            }
+            if (anonymousId === undefined) return;
             MoESegmentBridge.trackAnonymousId(this.platformPayloadBuilder.getAnonymousIdPayload(anonymousId));
-            this.currentAnonymousId = anonymousId;
         } catch (error) {
             Logger.error(this.tag, `trackAnonymousId(): ${error}`);
         }
@@ -75,15 +69,18 @@ export default class MoEngagePluginHandler {
      * Modify the user traits with user id added in the traits
      * 
      * @param {string} anonymousId - anonymous id for the user
+     * @param {string} userId - unique id for user
      * @param {Record<string, unknown>} userTraits - tracked user traits 
      * @returns modified user traits
      * @since 1.0.0
      */
     getModifiedUserTraits(
         anonymousId?: string,
+        userId?: string,
         userTraits?: Record<string, unknown>
     ): Record<string, unknown> | undefined {
         let modifiedUserTraits: { [k: string]: any } = {};
+        if (userId !== undefined) modifiedUserTraits[traitsMap.userId] = userId;
         if (anonymousId !== undefined) modifiedUserTraits[traitsMap.anonymousId] = anonymousId;
         modifiedUserTraits = Object.assign(modifiedUserTraits, userTraits);
         return modifiedUserTraits;
@@ -92,19 +89,14 @@ export default class MoEngagePluginHandler {
     /**
      * Track user attributes for the AppId in IntegrationSetting
      * 
-     * @param {string} userId - user id for the user
-     * @param {Record<string, unknown} userTraits - user attribute to be tracked 
+     * @param {Record<string, unknown>} userTraits - user attribute to be tracked 
      *     Note: Records should be mapped to MoEngage predefined attributes if available 
      * @since 1.0.0
      */
-    setUserAttributes(newUserId?: string, userTraits?: Record<string, unknown>): void {
+    setUserAttributes(userTraits?: Record<string, unknown>): void {
         try {
             Logger.debug(this.tag, `setUserAttributes(): traits ${userTraits}`);
             if (userTraits === undefined) return;
-            if (newUserId !== this.currentUserId) {
-                this.setUserAlias(newUserId);
-                this.currentUserId = newUserId;
-            }
             MoESegmentBridge.setUserAttributes(this.platformPayloadBuilder.getUserAttributesPayload(userTraits));
         } catch (error) {
             Logger.error(this.tag, `setUserAttributes(): ${error}`);

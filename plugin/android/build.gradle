@@ -76,7 +76,7 @@ repositories {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
     compileOnly "com.facebook.react:react-native:+"
     compileOnly "com.moengage:moe-android-sdk:$moengageCoreVersion"

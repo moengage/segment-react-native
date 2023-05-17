@@ -33,10 +33,6 @@ describe('PayloadBuilder', () => {
         it('should return payload with anonymous id', () => {
             expect(getAnonymousIdPayload(dummyAppId, dummyAnonymousId)).toEqual(anonymousIdPayload);
         });
-
-        it('should return payload with empty anonymous id', () => {
-            expect(getAnonymousIdPayload(dummyAppId)).toEqual(anonymousIdPayloadWithEmptyId);
-        });
     });
 
     describe('User Attributes Payloads', () => {

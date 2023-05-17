@@ -40,7 +40,7 @@ export default class PlatformPayloadBuilder {
      * @returns the platform specific payload.
      * @since 1.0.0
      */
-    getAnonymousIdPayload(anonymousId?: string): string | { [k: string]: any; } {
+    getAnonymousIdPayload(anonymousId: string): string | { [k: string]: any; } {
         if (this.platform == PLATFORM_ANDROID) {
             return JSON.stringify(getAnonymousIdPayload(this.appId, anonymousId));
         } else if (this.platform == PLATFORM_iOS) {
@@ -75,7 +75,7 @@ export default class PlatformPayloadBuilder {
      * @returns the platform specific payload
      * @since 1.0.0
      */
-    getTrackEventPayload(event: string, properties: { [k: string | number]: any }): string | { [k: string]: any; } {
+    getTrackEventPayload(event: string, properties: { [k: string]: any }): string | { [k: string]: any; } {
         if (this.platform == PLATFORM_ANDROID) {
             return JSON.stringify(getTrackEventPayload(this.appId, event, properties));
         } else if (this.platform == PLATFORM_iOS) {

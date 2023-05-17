@@ -29,14 +29,14 @@ import com.moengage.plugin.base.segment.SegmentPluginHelper
 class MoESegmentBridge(reactContext: ReactApplicationContext) :
     ReactContextBaseJavaModule(reactContext) {
 
-    private val tag = "MoESegmentBridge_${getMoESegmentLibVersion()}"
+    private val moESegmentLibVersion = BuildConfig.MOENGAGE_REACT_SEGMENT_VERSION
+    
+    private val tag = "MoESegmentBridge_$moESegmentLibVersion"
 
     private val context: Context = reactContext.applicationContext
-    private val segmentPluginHelper = SegmentPluginHelper(context, getMoESegmentLibVersion())
+    private val segmentPluginHelper = SegmentPluginHelper(context, moESegmentLibVersion)
 
     override fun getName(): String = "MoESegmentBridge"
-
-    private fun getMoESegmentLibVersion(): String = BuildConfig.MOENGAGE_REACT_SEGMENT_VERSION
 
     /**
      * Initialise the SDK
