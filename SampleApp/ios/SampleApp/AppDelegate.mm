@@ -1,8 +1,11 @@
 #import "AppDelegate.h"
 #import <React/RCTBundleURLProvider.h>
-
+#import <UserNotifications/UNUserNotificationCenter.h>
 #import <ReactNativeSegmentMoEngage/MoEngageInitializer.h>
 #import <MoEngageSDK/MoEngageSDK.h>
+@interface AppDelegate()< UNUserNotificationCenterDelegate>
+
+@end
 
 @implementation AppDelegate
 
@@ -15,8 +18,18 @@
 
   MoEngageSDKConfig* sdkConfig = [[MoEngageSDKConfig alloc] initWithAppID:@"YOUR APP ID"];
   sdkConfig.enableLogs = true;
+  sdkConfig.appGroupID = @"group.com.alphadevs.MoEngage.NotificationServices";
   [[MoEngageInitializer sharedInstance] initializeDefaultSDKConfig:sdkConfig andLaunchOptions:launchOptions];
+  [[MoEngageSDKMessaging sharedInstance] registerForRemoteNotificationWithCategories:nil andUserNotificationCenterDelegate:self];
+  
+
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
+}
+
+//Remote notification Registration callback methods
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken {
+  //Call only if MoEngageAppDelegateProxyEnabled is NO
+  [[MoEngageSDKMessaging sharedInstance] setPushToken:deviceToken];
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
@@ -37,5 +50,15 @@
 {
   return true;
 }
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+  completionHandler((UNNotificationPresentationOptionAlert|UNNotificationPresentationOptionSound));
+}
+
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
+  [[MoEngageSDKMessaging sharedInstance] userNotificationCenter:center didReceive:response];
+    completionHandler();
+}
+
 
 @end

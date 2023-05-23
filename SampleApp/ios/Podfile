@@ -64,3 +64,12 @@ pod 'MoEngageSegmentPluginBase', :git => 'https://github.com/moengage/MoEngage-i
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end
+
+
+target 'NotificationService' do
+  pod ‘MoEngageRichNotification’
+end
+
+target 'NotificationContent' do
+  pod ‘MoEngageRichNotification’
+end

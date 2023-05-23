@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
   s.source_files        = 'iOS/MoEngageSegmentReactBridge/MoEngageSegmentReactBridge/**/*.{h,m}'
   s.dependency          'React'
   s.dependency          'MoEngageSegmentPluginBase','>= 1.0.0','< 1.1.0'
+  s.dependency  	'MoEngageRichNotification','>= 7.8.0','< 7.9.0'
 
   s.prepare_command = <<-CMD
     echo // Generated file, do not edit > iOS/MoEngageSegmentReactBridge/MoEngageSegmentReactPluginInfo.h
