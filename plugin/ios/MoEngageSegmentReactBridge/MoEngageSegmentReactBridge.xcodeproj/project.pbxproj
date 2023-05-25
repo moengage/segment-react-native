@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AC17DED12A0E31B2004B0DD1 /* MoEngageSegmentConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = AC17DECA2A0E31B1004B0DD1 /* MoEngageSegmentConstants.m */; };
-		AC17DED22A0E31B2004B0DD1 /* MoEngageInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = AC17DECC2A0E31B2004B0DD1 /* MoEngageInitializer.m */; };
+		AC17DED22A0E31B2004B0DD1 /* MoEngageSegmentReactInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = AC17DECC2A0E31B2004B0DD1 /* MoEngageSegmentReactInitializer.m */; };
 		AC17DED32A0E31B2004B0DD1 /* MoESegmentBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = AC17DECE2A0E31B2004B0DD1 /* MoESegmentBridge.m */; };
 /* End PBXBuildFile section */
 
@@ -28,8 +28,8 @@
 		AC17DEBE2A0E3191004B0DD1 /* libMoEngageSegmentReactBridge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMoEngageSegmentReactBridge.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC17DECA2A0E31B1004B0DD1 /* MoEngageSegmentConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoEngageSegmentConstants.m; sourceTree = "<group>"; };
 		AC17DECB2A0E31B2004B0DD1 /* MoEngageReactSegmentPluginInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoEngageReactSegmentPluginInfo.h; sourceTree = "<group>"; };
-		AC17DECC2A0E31B2004B0DD1 /* MoEngageInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoEngageInitializer.m; sourceTree = "<group>"; };
-		AC17DECD2A0E31B2004B0DD1 /* MoEngageInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoEngageInitializer.h; sourceTree = "<group>"; };
+		AC17DECC2A0E31B2004B0DD1 /* MoEngageSegmentReactInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoEngageSegmentReactInitializer.m; sourceTree = "<group>"; };
+		AC17DECD2A0E31B2004B0DD1 /* MoEngageSegmentReactInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoEngageSegmentReactInitializer.h; sourceTree = "<group>"; };
 		AC17DECE2A0E31B2004B0DD1 /* MoESegmentBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoESegmentBridge.m; sourceTree = "<group>"; };
 		AC17DECF2A0E31B2004B0DD1 /* MoEngageSegmentConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoEngageSegmentConstants.h; sourceTree = "<group>"; };
 		AC17DED02A0E31B2004B0DD1 /* MoESegmentBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoESegmentBridge.h; sourceTree = "<group>"; };
@@ -65,8 +65,8 @@
 		AC17DEC02A0E3191004B0DD1 /* MoEngageSegmentReactBridge */ = {
 			isa = PBXGroup;
 			children = (
-				AC17DECD2A0E31B2004B0DD1 /* MoEngageInitializer.h */,
-				AC17DECC2A0E31B2004B0DD1 /* MoEngageInitializer.m */,
+				AC17DECD2A0E31B2004B0DD1 /* MoEngageSegmentReactInitializer.h */,
+				AC17DECC2A0E31B2004B0DD1 /* MoEngageSegmentReactInitializer.m */,
 				AC17DECB2A0E31B2004B0DD1 /* MoEngageReactSegmentPluginInfo.h */,
 				AC17DECF2A0E31B2004B0DD1 /* MoEngageSegmentConstants.h */,
 				AC17DECA2A0E31B1004B0DD1 /* MoEngageSegmentConstants.m */,
@@ -135,7 +135,7 @@
 			files = (
 				AC17DED12A0E31B2004B0DD1 /* MoEngageSegmentConstants.m in Sources */,
 				AC17DED32A0E31B2004B0DD1 /* MoESegmentBridge.m in Sources */,
-				AC17DED22A0E31B2004B0DD1 /* MoEngageInitializer.m in Sources */,
+				AC17DED22A0E31B2004B0DD1 /* MoEngageSegmentReactInitializer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

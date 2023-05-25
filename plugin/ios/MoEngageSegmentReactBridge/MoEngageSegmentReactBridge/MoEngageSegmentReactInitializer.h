@@ -1,5 +1,5 @@
 //
-//  MoEngageInitializer.h
+//  MoEngageSegmentReactInitializer.h
 //  ReactNativeSegmentMoEngage
 //
 //  Created by Rakshitha on 11/05/23.
@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MoEngageInitializer : NSObject
+@interface MoEngageSegmentReactInitializer : NSObject
 
 +(instancetype)sharedInstance;
 

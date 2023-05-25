@@ -15,7 +15,7 @@
     "react": "18.2.0",
     "react-native": "0.71.6",
     "react-native-get-random-values": "^1.8.0",
-    "react-native-moengage": "^8.4.0"
+    "react-native-moengage": "^8.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

@@ -1,6 +1,7 @@
 import { StatusBar, FlatList, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { trackEvent, identifyAttributes, setAlias, logout, syncData } from './utils/SegmentHelper';
 import { SegmentClient } from '@segment/analytics-react-native';
+import ReactMoE from 'react-native-moengage';
 
 
 // Add Data in this array to add extra button on HomeScreen
@@ -29,6 +30,11 @@ const HomeScreenData = [
     id: 4,
     title: "Logout",
     action: (client: SegmentClient) => logout(client)
+  },
+  {
+    id: 5,
+    title: "Register For Push",
+    action: () => ReactMoE.registerForPush()
   }
 ]
 

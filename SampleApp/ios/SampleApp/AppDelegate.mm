@@ -1,7 +1,8 @@
 #import "AppDelegate.h"
 #import <React/RCTBundleURLProvider.h>
 #import <UserNotifications/UNUserNotificationCenter.h>
-#import <ReactNativeSegmentMoEngage/MoEngageInitializer.h>
+#import <ReactNativeSegmentMoEngage/MoEngageSegmentReactInitializer.h>
+#import <ReactNativeMoEngage/MoEngageInitializer.h>
 #import <MoEngageSDK/MoEngageSDK.h>
 @interface AppDelegate()< UNUserNotificationCenterDelegate>
 
@@ -19,9 +20,8 @@
   MoEngageSDKConfig* sdkConfig = [[MoEngageSDKConfig alloc] initWithAppID:@"YOUR APP ID"];
   sdkConfig.enableLogs = true;
   sdkConfig.appGroupID = @"group.com.alphadevs.MoEngage.NotificationServices";
+  [[MoEngageSegmentReactInitializer sharedInstance] initializeDefaultSDKConfig:sdkConfig andLaunchOptions:launchOptions];
   [[MoEngageInitializer sharedInstance] initializeDefaultSDKConfig:sdkConfig andLaunchOptions:launchOptions];
-  [[MoEngageSDKMessaging sharedInstance] registerForRemoteNotificationWithCategories:nil andUserNotificationCenterDelegate:self];
-  
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }

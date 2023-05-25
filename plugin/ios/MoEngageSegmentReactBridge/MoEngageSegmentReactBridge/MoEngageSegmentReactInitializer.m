@@ -1,28 +1,28 @@
 //
-//  MoEngageInitializer.m
+//  MoEngageSegmentReactInitializer.m
 //  ReactNativeSegmentMoEngage
 //
 //  Created by Rakshitha on 11/05/23.
 //
 
-#import "MoEngageInitializer.h"
+#import "MoEngageSegmentReactInitializer.h"
 #import "MoEngageReactSegmentPluginInfo.h"
 #import "MoEngageSegmentConstants.h"
 #import <MoEngageSDK/MoEngageSDK.h>
 @import MoEngageSegmentPluginBase;
-@interface MoEngageInitializer()
+@interface MoEngageSegmentReactInitializer()
 
 @end
 
-@implementation MoEngageInitializer
+@implementation MoEngageSegmentReactInitializer
 
 #pragma mark- Initialization
 
 +(instancetype)sharedInstance{
     static dispatch_once_t onceToken;
-    static MoEngageInitializer *instance;
+    static MoEngageSegmentReactInitializer *instance;
     dispatch_once(&onceToken, ^{
-        instance = [[MoEngageInitializer alloc] init];
+        instance = [[MoEngageSegmentReactInitializer alloc] init];
     });
     return instance;
 }
