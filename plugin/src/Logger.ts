@@ -50,11 +50,11 @@ export namespace MoEngageLogger {
     /**
      * Configure the logging in MoEngage Segment Plugin
      * 
-     * @param {MoEngageLogLevel} logLevel = log level which need to be logged on console
+     * @param {MoEngageLogLevel} level = log level which need to be logged on console
      * @param {boolean} isEnabledForReleaseBuild = whether log is enabled for release build or not
      */
-    export function configureLogs(logLevel: MoEngageLogLevel, isEnabledForReleaseBuild: boolean = false): void {
-        logLevel = logLevel;
+    export function configureLogs(level: MoEngageLogLevel, isEnabledForReleaseBuild: boolean = false): void {
+        logLevel = level;
         isEnabled = isEnabledForReleaseBuild || __DEV__;
     }
 
