@@ -49,5 +49,5 @@ MoEngage moEngage =
         new MoEngage.Builder(this, "YOUR_APP_ID", [YOUR_DATA_CENTER])
             .enablePartnerIntegration(IntegrationPartner.SEGMENT)
             .build();
-MoEInitializer.INSTANCE.initialiseDefaultInstance(moEngage);
+MoEInitializer.INSTANCE.initializeDefaultInstance(getApplicationContext(), moEngage);
 ```
