@@ -1,5 +1,3 @@
-# MoEngage Segment Plugin
-
 # Next Release
 
 ## 1.0.0

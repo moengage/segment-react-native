@@ -22,16 +22,13 @@ const segmentClient = createClient({
 });
 ```
 
-**Notes**: For complete Segment SDK setup please refer [`Segment Developer Doc`](https://segment.com/docs/connections/sources/catalog/libraries/mobile/react-native/)
+**Notes**: For complete Segment SDK setup please refer [`Segment Developer Documentation`](https://segment.com/docs/connections/sources/catalog/libraries/mobile/react-native/)
 
 ### MoEngage ReactNative Setup
 Install `react-native-segment-plugin-moengage` & [`react-native-moengage`](https://www.npmjs.com/package/react-native-moengage)
 ```sh
 npm install react-native-segment-plugin-moengage react-native-moengage
 ```
-
-Initialise the MoEngage ReactNative SDK.
-Reference Doc: https://developers.moengage.com/hc/en-us/categories/4404199274900-React-Native-SDK
 
 Add the MoEngage Plugin to Segment Client.
 ```js
@@ -67,4 +64,4 @@ Add the Segment Integration in application:didFinishLaunchingWithOptions: method
     return YES;
 }
 ```
-Reference Doc for more on iOS Initialization: https://partners.moengage.com/hc/en-us/articles/15980542013204-iOS
+Refer to the integration [documentation](https://partners.moengage.com/hc/en-us/sections/15979246131092-React-Native-Device-Mode) for more details.
