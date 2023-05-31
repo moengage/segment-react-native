@@ -51,3 +51,20 @@ MoEngage moEngage =
             .build();
 MoEInitializer.INSTANCE.initializeDefaultInstance(getApplicationContext(), moEngage);
 ```
+### iOS 
+Add the Segment Integration in application:didFinishLaunchingWithOptions: method: of AppDelegate
+```Objective-C
+#import <ReactNativeSegmentMoEngage/MoEngageSegmentReactInitializer.h>
+#import <MoEngageSDK/MoEngageSDK.h>
+@implementation AppDelegate
+ 
+- (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
+{    
+    MoEngageSDKConfig* sdkConfig = [[MoEngageSDKConfig alloc] initWithAppId:@"YOUR APPID" dataCenter: DATA_CENTER];
+    sdkConfig.enableLogs = true;
+    [[MoEngageSegmentReactInitializer sharedInstance] initializeDefaultSDKConfig:sdkConfig andLaunchOptions:launchOptions];
+ 
+    return YES;
+}
+```
+Reference Doc for more on iOS Initialization: https://partners.moengage.com/hc/en-us/articles/15980542013204-iOS

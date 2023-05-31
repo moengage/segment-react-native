@@ -46,7 +46,6 @@ target 'SampleApp' do
   )
 
 pod 'ReactNativeSegmentMoEngage', :path => '../node_modules/react-native-segment-plugin-moengage'
-pod 'MoEngageSegmentPluginBase', :git => 'https://github.com/moengage/MoEngage-iOS-Pods.git', :branch => 'pluginBase'
 
 
   target 'SampleAppTests' do
