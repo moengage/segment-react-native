@@ -46,8 +46,8 @@ Once the installation is done move to platform specific integrations.
 Add the Segment Integration to MoEngage builder
 ```java
 MoEngage moEngage =
-        new MoEngage.Builder(this, "Your App Id")
+        new MoEngage.Builder(this, "YOUR_APP_ID", [YOUR_DATA_CENTER])
             .enablePartnerIntegration(IntegrationPartner.SEGMENT)
             .build();
-MoEngage.initialiseDefaultInstance(moEngage);
+MoEInitializer.INSTANCE.initialiseDefaultInstance(moEngage);
 ```
