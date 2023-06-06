@@ -12,4 +12,4 @@ This repository contains the React Native plugin to integrate the MoEngage SDK w
 | Plugin       | Contains a Destination Plugin to integrate the MoEngage SDK with Segment SDK                            |
 
 
-**Notes:** To check the Integration checkout the module specific ReadMe files.
+Refer to the [integration documention](https://partners.moengage.com/hc/en-us/sections/15979246131092-React-Native-Device-Mode) for more details on how to integrate the SDK.
