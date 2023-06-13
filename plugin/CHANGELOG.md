@@ -1,6 +1,6 @@
-# Next Release
+# 13-06-2023
 
-## Next Version
+## 1.0.1
 - Removing the unnecessary published files from the npm package
 
 # 31-05-2023

@@ -1,6 +1,6 @@
 {
   "name": "react-native-segment-plugin-moengage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Plugin to integrate MoEngage SDK with Segment React Native SDK",
   "main": "src/index.ts",
   "files": [
